@@ -154,7 +154,7 @@ Easy properties:
 > Hence, (1) only has trivial solution; $v_1, \ldots, v_k, v_{k+1}$ are LID. ||
 
 - Special case 2: An Hermitian [in the real case: symmetric] matrix is diagonalizable. Actually, it can be unitarily [orthogonally] diagonalized,
-$A=P\Lambda P^{\*}\ [A=P\Lambda P^T]$ --> See spectral theorem I.
+$A=P\Lambda P^{\*}\ [A=P\Lambda P^T]$ --> See Spectral Theorem I.
 
 
 **Eigendecomposition**
@@ -169,7 +169,7 @@ AQ=A(q_1 \ldots q_n)=(\lambda_1 q_1 \ldots \lambda_n q_n)&=Q\Lambda \\
 
 ($Q$ is invertible because its columns are LID.)
 
-The LID eigenvectors $q_i (i=1,\ldots,n)$ with nonzero eigenvalues form a **basis** (not necessarily orthonormal) for all possible products $Aw, \forall w\in\mathbb{C}^n$.
+The LID eigenvectors ${q_i: i=1,\ldots,n}$ with nonzero eigenvalues form a **basis** (not necessarily orthonormal) for all possible products $Aw, \forall w\in\mathbb{C}^n$.
 
 ## Spectral Theorem
 **Theorem** (spectral theorem I). Let $A$ be an $n\times n$ Hermitian matrix. There exists an unitary matrix $Q$ and a diagonal matrix $D$ such that $A=QDQ^{\*}$.
@@ -230,16 +230,34 @@ This is the decomposition of the identity into **eigenspace projections**. In th
 
 $$A=\lambda_1 P_1+\ldots+\lambda_r P_r$$
 
-> *Proof.* Let $\lambda_1, \ldots, \lambda_r$ be the distinct eigenvalues of $A$ which are real (by spectral theorem II). 
+> *Proof.* Let $\lambda_1, \ldots, \lambda_r$ be the distinct eigenvalues of $A$ which are real (by Spectral Theorem II). 
 > Let $P_i$ be the orthogonal projection onto the eigenspace $\ker⁡(A-\lambda_i I)$, then we have $AP_i=\lambda_i P_i$. 
-> Moreover, by theorem II, the difference eigenspaces are mutually orthogonal, so $P_i P_j=0$. Finally, $I_n=P_1+\ldots+P_r$ is equivalent to saying there is a basis of eigenvectors.
+> Moreover, by Theorem II, the different eigenspaces are mutually orthogonal, so $P_i P_j=0$. Finally, $I_n=P_1+\ldots+P_r$ is equivalent to saying there is a basis of eigenvectors.
 
 **Spectral Decomposition**
 
-Now, for Hermitian matrix $A$, there is such a decomposition $A=Q\Lambda Q^*$ where $Q=(q_1 \ldots q_n)$, $Λ=\text{diag}(\lambda_1, \ldots, \lambda_n)$. Expanding the RHS yields the spectral decomposition of $A$:
+Now, suppose $(n\times n)$ Hermitian matrix $A$ has $n$ distinct eigenvalues $\lambda_1, \ldots, \lambda_n$, then there is such a decomposition $A=Q\Lambda Q^*$ where $Λ=\text{diag}(\lambda_1, \ldots, \lambda_n)$, $Q=(q_1 \ldots q_n)$ where each column is the corresponding eigenvectors of unit length. 
+Expanding the RHS yields the spectral decomposition of $A$:
 
 $$A=\sum_{i=1}^n \lambda_i q_i\bar{q}_i^T$$
 
+> *Proof.* Since $A$ is Hermitian and eigenvalues $\lambda_1,\ldots,\lambda_n$ are distinct, the $n$ eigenvectors are orthogonal (and hence LID).
+> Thus, we have the eigendecomposition $A=Q\Lambda Q^{-1}$ by the stated definitions of $\Lambda$ and $Q$.
+> Now, we find
+> 
+> $$
+> Q^{\*}Q=(\bar{q}_1^T \ldots \bar{q}_n^T)\begin{pmatrix}
+> q_1\\
+> \vdots\\
+> q_n
+> \end{pmatrix}=\begin{pmatrix}
+> \bar{q}_1^T\bar{q}_1 & \ldots & \bar{q}_1^Tq_n\\
+> \vdots & & \vdots\\
+> \bar{q}_n^Tq_1 & \ldots & \bar{q}_n^Tq_n
+> \end{pmatrix}=I_n
+> $$
+>
+> since $\bar{q}_i^Tq_j=0$ for any $i\leq j$ (orthogonality) and $\bar{q}_j^Tq_j=1$ for all $j=1,\ldots,n$. Thus, $Q^{\*}=Q^{-1}$. ||
 
 **Normal Matrix**
 
@@ -249,7 +267,7 @@ $$A^{\*}A=AA^{\*}$$
 
 Easy properties:
 
-- A is normal *iff* it is **unitarily similar** to a diagonal matrix.
+- $A$ is normal *iff* it is **unitarily similar** to a diagonal matrix.
 
 > *Proof.*
 >
@@ -259,7 +277,7 @@ Easy properties:
 > (Sufficiency $\Rightarrow$) We can use **Spectral Theorem I** or not.
 > *Using it enables an easier proof, but a proof without calling the stricter version of the statement makes their logic clear.* So we will do it the hard way. 
 >
-> By Schur decomposition, $A=QUQ^{\*}$ which means A is unitarily similar to an upper triangular $U$. It's easy to show $U$ is also normal. 
+> By Schur decomposition, $A=QUQ^{\*}$ which means $A$ is unitarily similar to an upper triangular $U$. It's easy to show $U$ is also normal. 
 > We now show that being normal and upper triangular implies **diagonality**.
 > 
 > Proof by **induction**:
@@ -323,8 +341,7 @@ An non-negative real number $\sigma$⁠ is called a **singular value** if there 
 
 $$Av=\sigma u,A^{\*}u=\sigma v$$
 
-The vectors $⁠u$ and $⁠v$ are called **left-singular** and **right-singular vectors** for ⁠σ, resp.
-
+The vectors $u$ and $v$ are called **left-singular** and **right-singular vectors** for $\sigma$, resp.
 
 **Theorem** (SVD). 
 For an $m\times n$ matrix $A$, $\exists U, V$ that are $m\times m$ and $n\times n$ unitary matrix and $R$ that is $m\times n$ rectangular diagonal with non-negative real entries, s.t. 
