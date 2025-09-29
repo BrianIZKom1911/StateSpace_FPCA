@@ -24,8 +24,7 @@ Geometric multiplicity $m(\lambda):=\text{dim}⁡(\ker(A-\lambda I))$ is the dim
 > $$Av_1=\lambda_1 v_1, \ldots, Av_g=\lambda_g v_g,$$
 > $$Aw_j=\sum_{i=1}^g c_{ij}v_i+\sum_{i=g+1}^n c_{ij}w_i, \forall j>g$$
 > 
-> When we transform $AP$ into the new basis by multiplying by $P^{-1}$, the first $g$ columns of $AP$ becomes $P^{-1}Av_j=\lambda P^{-1}v_j$ where $P^{-1}v_j=e_j$
-> (the column vector with 1 in the $j$th element). So,  
+> When we transform $AP$ into the new basis by multiplying by $P^{-1}$, the first $g$ columns of $AP$ becomes $P^{-1}Av_j=\lambda P^{-1}v_j$ where $P^{-1}v_j=e_j$ (the column vector with 1 in the $j$th element). So,  
 >
 > $$
 > A'=
@@ -55,7 +54,7 @@ $$A=QUQ^{*}\quad\text{(called \textit{Schur form})}$$
 
 for some unitary matrix $Q$, and some upper triangular matrix $U$.
 - Unitary means the inverse is also the conjugate transpose, $Q^{-1}=Q^{\*}$ (also denoted by $\bar{Q}^T$).
-- Since $A$ and $U$ are similar, they have the same **spectrum**. And since $U$ is triangular, its eigenvalues are the diagonal entries.
+- Since $A$ and $U$ are similar, they have the same **spectrum**. And since $U$ is triangular, its eigenvalues are the diagonal entries, which are also eigenvalues of $A$.
 > *Proof.* Suppose $\lambda_1, \lambda_2, \ldots, \lambda_n\in\mathbb{C}$ are the $n$ eigenvalues of $A$. Let $q_1$ be an eigenvector of norm 1 associated with $\lambda_1$.
 > Pick any $n-1$ vectors that are of norm 1 and orthogonal to $q_1$. They form an orthonormal basis $Q_1=(q_1, q_2, \ldots, q_n)$ of $\mathbb{C}^n$, $Q_1^{\*}Q_1=I$.
 > 
@@ -182,7 +181,7 @@ The LID eigenvectors ${q_i: i=1,\ldots,n}$ with nonzero eigenvalues form a **bas
 
 - An direct observation is that $Q^{\*}=Q^{-1}$, so $A$ is in fact unitarily diagonalized by $Q$, so we have
 
-**Corollary.** Hermitian matrices are (unitarily) diagonalizable.
+**Corollary.** Hermitian matrices are unitarily diagonalizable.
 
 
 **Theorem** (spectral theorem II). For an $n\times n$ Hermitian matrix $A$:
@@ -213,8 +212,7 @@ The LID eigenvectors ${q_i: i=1,\ldots,n}$ with nonzero eigenvalues form a **bas
 > 
 > Since $D$ is triangular (here, diagonal), its diagonal entries must be the $n$ (real) eigenvalues of $A$.
 > The algebraic multiplicity $\mu(\lambda)$ is the number of times it appears on the diagonal of $D$. 
-> The kernel space (or null space) $\ker(D-\lambda I)$ is straightforward to find. The dimension of $\ker(D-\lambda I)$ is just the number of zeros on its diagonal,
-> which is equal to the times $\lambda$ appears in $D$. Thus, $m(\lambda)=\mu(\lambda)$. ||
+> The kernel space (or null space) $\ker(D-\lambda I)$ is straightforward to find. The dimension of $\ker(D-\lambda I)$ is just the number of zeros on its diagonal, which is equal to the times $\lambda$ appears in $D$. Thus, $m(\lambda)=\mu(\lambda)$. ||
 
 
 **Theorem** (spectral theorem III). Let $A$ be an $n\times n$ Hermitian matrix, then there exists orthogonal projections $P_1, \ldots, P_r$ 
@@ -267,7 +265,7 @@ $$A^{\*}A=AA^{\*}$$
 
 Easy properties:
 
-- $A$ is normal *iff* it is **unitarily similar** to a diagonal matrix.
+- $A$ is normal *iff* it is **unitarily similar** to a diagonal matrix (or equivalently, unitarily diagonalizable).
 
 > *Proof.*
 >
@@ -332,27 +330,44 @@ Easy properties:
 - That is to say, normal matrix is (unitarily) diagonalizable.
 
 Obviously, Hermitian matrix is normal. Therefore, the spectral theorem I is just a stricter version of this property of normal matrix, whose proof would be redundant if we showed this first.
+In other words, the very significance of Spectral Theorem lies in version (II) that Hermitian matrix is equivalent to unitarily diagonalizable matrix whose spectrum (set of eigenvalues) is real; 
+$A$ is Hermitian *iff* $A$ is unitarily similar to a *real* diagonal matrix. 
+
+**Quiz.** Can you give me a counterexample for the converse of Spectral Theorem I?
+
+> *Answer:* It reduces to finding a normal matrix that is not Hermitian. Any skew-Hermitian matrix serves this purpose. For example, 
+> 
+> $$
+> A=\begin{pmatrix}
+> 0 & -1\\
+> 1 & 1 \end{pmatrix}$$
+>
+> Its eigenvalues are $i, -i$ not real. It's easy to verify $A^{\*}A=AA^{\*}$. We also find
+>
+> $$
+> D=\begin{pmatrix}
+> i & 0\\
+> 0 & -i \end{pmatrix}, Q=2^{-1/2}\begin{pmatrix}
+> 1 & 1\\
+> -i & i
+> $$
+>
+> such that $QQ^{\*}=I$, $A=QDQ^{\*}$. ||
+
 
 ## Singular Value Decomposition (SVD)
 The Schur decomposition and the spectral decomposition are special cases of the **singular value decomposition** for square matrices and Hermitian matrices, resp. It will be extended to matrices of any shape.
 
-**Definition.** Suppose matrix $A$ represent the linear transformation from vector spaces $V^m$ to $V^n$. 
-An non-negative real number $\sigma$⁠ is called a **singular value** if there exist unit vectors $u\in V^m$ and $v\in V^n$ s.t. 
-
-$$Av=\sigma u,A^{\*}u=\sigma v$$
-
-The vectors $u$ and $v$ are called **left-singular** and **right-singular vectors** for $\sigma$, resp.
-
 **Theorem** (SVD). 
 For an $m\times n$ matrix $A$, $\exists U, V$ that are $m\times m$ and $n\times n$ unitary matrix and $R$ that is $m\times n$ rectangular diagonal with non-negative real entries, s.t. 
 
-$$A=URV^*$$
+$$A=URV^{\*}$$
 
 - Rectangular diagonal means all entries but those at $(i, i)$ are zero.
 
 > *Proof of existence.*
 > 
-> WLoG, suppose $m\leq n$. Since $A^{\*}A$ is positive semi-definite and Hermitian, by spectral theorem  there exists an ⁠n\times n unitary matrix $V$ such that
+> WLoG, suppose $m\leq n$. Since $A^{\*}A$ is positive semi-definite and Hermitian, by [Spectral Theorem I](01_matrix_factorization.md#spectral-theroem) there exists an $⁠n\times n$ unitary matrix $V$ such that
 >
 > $$V^{\*}A^{\*}AV=D=\begin{pmatrix} 
 > D_{11} & 0\\ 
@@ -360,12 +375,11 @@ $$A=URV^*$$
 > \end{pmatrix}$$
 >
 > where $D_{11}$ is diagonal and positive definite, of dimension $\ell\times\ell$, with $\ell$ the number of non-zero eigenvalues of $A^{\*}A$. (Obviously $\ell\leq m$). 
-> Here $V$ is by definition a matrix whose ith column is the $i$-th eigenvector of $A^{\*}A$, corresponding to the eigenvalue $d_{ii}=\lambda_i$.
+> Here $V$ is by definition a matrix whose ith column is the $i$-th eigenvector of $A^{\*}A$, corresponding to the eigenvalue $d_{ii}$ (with no implication of their orders).
 > Moreover, the $k$-th column of $V$ for $k\geq\ell+1$ is an eigenvector of $A^{\*}A$ with eigenvalue $d_{kk}=0$.
-> Thus we can write $V=(V_1\quad V_2)$  where the columns of $V_1$ and $V_2$ contain the eigenvectors of $A^{\*}A$
-> corresponding to non-zero and zero eigenvalues, resp. $V$ being unitary implies $V_1^{\*}V_1=I_1, V_2^{\*}V_2=I_2$ and $V_1 V_1^{\*}+V_2 V_2^{\*}=I_n$
-> where subscripts in $I_1$ and $I_2$ denote the dimension equals $\ell$ and $n-\ell$, resp. 
->
+> Thus we can write $V=(V_1\quad V_2)$  where the columns of $V_1$ and $V_2$ contain the eigenvectors of $A^{\*}A$ corresponding to non-zero and zero eigenvalues, resp.
+> $V$ being unitary implies $V_1^{\*}V_1=I_1, V_2^{\*}V_2=I_2$ and $V_1 V_1^{\*}+V_2 V_2^{\*}=I_n$ where subscripts in $I_1$ and $I_2$ denote the dimension equals $\ell$ and $n-\ell$, resp. 
+> 
 > Using this partition of $V$ the equation becomes
 >
 > $$\begin{pmatrix}
@@ -404,12 +418,12 @@ $$A=URV^*$$
 >
 > $$
 > R=\begin{pmatrix}
-> D_{11}^{1/2} & 0_{l\times(n-\ell)}\\
-> 0_{(m-l)\times\ell} & 0_{(m-l)\times(n-l)}
+> D_{11}^{1/2} & 0_{\ell\times(n-\ell)}\\
+> 0_{(m-\ell)\times\ell} & 0_{(m-\ell)\times(n-\ell)}
 > \end{pmatrix}  
 > $$
 > 
-> that has $(n-m)$ zero rows removed from $D$ and thus has $(m-l)$ zero rows. Hence
+> that has $(n-m)$ zero rows removed from $D$ and thus has $(m-\ell)$ zero rows. Hence
 > 
 > $$
 > \begin{pmatrix}
@@ -427,3 +441,46 @@ $$A=URV^*$$
 > 0
 > \end{pmatrix}=U_1 D_{11}^{1/2} V_1^{\*}=A
 > $$
+
+**Alternative version**
+
+We have already proved another version of SVD: 
+For an $m\times n$ matrix $A$, $\exists U_1, V_1, D_1$ which are $m\times\ell$, $n\times\ell$ and $\ell\times\ell$, s.t.
+
+(1) $U_1, V_1$ have orthonormal columns, i.e. $U_1^{\*}U_1=I_{\ell}=V_1^{\*}V_1$, $\ell=\text{rank}(A)$; 
+
+(2) $D_1$ is diagonal with non-zero real entries;
+
+(3) $A=U_1 DV_1^{\*}$
+
+In fact, as shown above $D_1:=D_{11}^{1/2}$ where $D_{11}$ is a diagonal $\ell\times\ell$ matrix consisting of non-zero eigenvalues of $A^{\*}A$; the i-th column of $V_1$ is the $i$-th eigenvector of $A^{\*}A$ corresponding to $d_{ii}$; $U_1=AV_1 D_{11}^{-1/2}$.
+
+**Definitions and relations.** 
+
+Suppose matrix $A$ represent the linear transformation from vector spaces $V^m$ to $V^n$. An non-negative real number $\sigma$⁠ is called a **singular value** if there exist unit vectors $u\in V^m$ and $v\in V^n$ s.t. 
+
+$$Av=\sigma u, A^{\*}u=\sigma v$$
+
+The vectors $u$ and $v$ are called **left-singular** and **right-singular vectors** for $\sigma$, resp.
+
+In SVD $A=URV^{\*}$, $U$ and $V$ are called **left-singular** and **right-singular matrix**.
+
+- The diagonal entries of $R$⁠ are equal to the singular values of ⁠$A$.
+- The first $m (m\leq n)$ columns of U and ⁠V are, respectively, left- and right-singular vectors for the corresponding singular values.
+
+
+**Relation to eigendecomposition**
+The singular value decomposition, as a generalization, is related to the spectral decomposition in this manner:
+
+$$
+\begin{align}
+X^{\*}X &= V(R^{\*}R)V^{\*}\\
+XX^{\*} &= U(RR^{\*})U^{\*}
+\end{align}
+$$
+
+The RHS of these relations describe the spectral decompositions of the LHS.
+
+- The columns of $V$ (right-singular matrix) are eigenvectors of $X^{\*}X$
+- The columns of $U$ (left-singular matrix) are eigenvectors of $XX^{\*}$
+- The non-zero elements of ⁠$R$ (non-zero singular values) are the square roots of the non-zero eigenvalues of $X^{\*}X$ (or equivalently $XX^{\*}$)
