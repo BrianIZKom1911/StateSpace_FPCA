@@ -5,7 +5,7 @@ An square matrix for which all eigenvalues are distinct is said to have a *simpl
 
 **Definitions.**
 
-Algebraic multiplicity $\mu(\lambda)$ is the number of roots of the characteristic polynomial $det⁡(A-xI)$ equal to $\lambda$.
+Algebraic multiplicity $\mu(\lambda)$ is the number of roots of the characteristic polynomial $\det⁡(A-xI)$ equal to $\lambda$.
 
 Geometric multiplicity $m(\lambda):=\text{dim}⁡(\ker(A-\lambda I))$ is the dimension of the eigenspace associated with eigenvalue $\lambda$. Some easy properties:
 
@@ -249,7 +249,7 @@ $$A=\sum_{i=1}^n \lambda_i q_i\bar{q}_i^T$$
 > \vdots\\
 > q_n
 > \end{pmatrix}=\begin{pmatrix}
-> \bar{q}_1^T\bar{q}_1 & \ldots & \bar{q}_1^Tq_n\\
+> \bar{q}_1^T q_1 & \ldots & \bar{q}_1^Tq_n\\
 > \vdots & & \vdots\\
 > \bar{q}_n^Tq_1 & \ldots & \bar{q}_n^Tq_n
 > \end{pmatrix}=I_n
@@ -331,9 +331,9 @@ Easy properties:
 
 Obviously, Hermitian matrix is normal. Therefore, the spectral theorem I is just a stricter version of this property of normal matrix, whose proof would be redundant if we showed this first.
 In other words, the very significance of Spectral Theorem lies in version (II) that Hermitian matrix is equivalent to unitarily diagonalizable matrix whose spectrum (set of eigenvalues) is real; 
-$A$ is Hermitian *iff* $A$ is unitarily similar to a *real* diagonal matrix. 
+**$A$ is Hermitian *iff* $A$ is unitarily similar to a *real* diagonal matrix.**
 
-**Quiz.** Can you give me a counterexample for the converse of Spectral Theorem I?
+**Quiz.** *Can you give me a counterexample for the converse of Spectral Theorem I?*
 
 > *Answer:* It reduces to finding a normal matrix that is not Hermitian. Any skew-Hermitian matrix serves this purpose. For example, 
 > 
@@ -349,7 +349,7 @@ $A$ is Hermitian *iff* $A$ is unitarily similar to a *real* diagonal matrix.
 > i & 0\\
 > 0 & -i \end{pmatrix}, Q=2^{-1/2}\begin{pmatrix}
 > 1 & 1\\
-> -i & i
+> -i & i \end{pmatrix}
 > $$
 >
 > such that $QQ^{\*}=I$, $A=QDQ^{\*}$. ||
@@ -367,7 +367,7 @@ $$A=URV^{\*}$$
 
 > *Proof of existence.*
 > 
-> WLoG, suppose $m\leq n$. Since $A^{\*}A$ is positive semi-definite and Hermitian, by [Spectral Theorem I](01_matrix_factorization.md#spectral-theroem) there exists an $⁠n\times n$ unitary matrix $V$ such that
+> WLoG, suppose $m\leq n$. Since $A^{\*}A$ is positive semi-definite and Hermitian, by [Spectral Theorem I](01_matrix_factorization.md#spectral-theroem) there exists an $n\times n$ unitary matrix $V$ such that 
 >
 > $$V^{\*}A^{\*}AV=D=\begin{pmatrix} 
 > D_{11} & 0\\ 
@@ -451,13 +451,11 @@ For an $m\times n$ matrix $A$, $\exists U_1, V_1, D_1$ which are $m\times\ell$, 
 
 (2) $D_1$ is diagonal with non-zero real entries;
 
-(3) $A=U_1 DV_1^{\*}$
+(3) $A=U_1 D_1 V_1^{\*}$
 
 In fact, as shown above $D_1:=D_{11}^{1/2}$ where $D_{11}$ is a diagonal $\ell\times\ell$ matrix consisting of non-zero eigenvalues of $A^{\*}A$; the i-th column of $V_1$ is the $i$-th eigenvector of $A^{\*}A$ corresponding to $d_{ii}$; $U_1=AV_1 D_{11}^{-1/2}$.
 
-**Definitions and relations.** 
-
-Suppose matrix $A$ represent the linear transformation from vector spaces $V^m$ to $V^n$. An non-negative real number $\sigma$⁠ is called a **singular value** if there exist unit vectors $u\in V^m$ and $v\in V^n$ s.t. 
+**Definitions and relations.** Suppose matrix $A$ represent the linear transformation from vector spaces $V^m$ to $V^n$. An non-negative real number $\sigma$⁠ is called a **singular value** if there exist unit vectors $u\in V^m$ and $v\in V^n$ s.t. 
 
 $$Av=\sigma u, A^{\*}u=\sigma v$$
 
@@ -465,11 +463,12 @@ The vectors $u$ and $v$ are called **left-singular** and **right-singular vector
 
 In SVD $A=URV^{\*}$, $U$ and $V$ are called **left-singular** and **right-singular matrix**.
 
-- The diagonal entries of $R$⁠ are equal to the singular values of ⁠$A$.
-- The first $m (m\leq n)$ columns of U and ⁠V are, respectively, left- and right-singular vectors for the corresponding singular values.
+- The diagonal entries of $R$⁠ are equal to the singular values of $A$ 
+- The first $m$ $(m\leq n)$ columns of $U$ and $V$ are, respectively, left- and right-singular vectors for the corresponding singular values
 
 
 **Relation to eigendecomposition**
+
 The singular value decomposition, as a generalization, is related to the spectral decomposition in this manner:
 
 $$
@@ -483,4 +482,4 @@ The RHS of these relations describe the spectral decompositions of the LHS.
 
 - The columns of $V$ (right-singular matrix) are eigenvectors of $X^{\*}X$
 - The columns of $U$ (left-singular matrix) are eigenvectors of $XX^{\*}$
-- The non-zero elements of ⁠$R$ (non-zero singular values) are the square roots of the non-zero eigenvalues of $X^{\*}X$ (or equivalently $XX^{\*}$)
+- The non-zero elements od $R$ (non-zero singular values) are the square roots of the non-zero eigenvalues of $X^{\*}X$ (or equivalently $XX^{\*}$)
